@@ -1,3 +1,8 @@
+;; Much of this code is based on Peter Norvig's code in Paradigms of Artificial
+;; Intelligence, some of it is even copied varbatim! The main extensions are the
+;; useful macros "let-match", "cond-match", and "defun-match" which will bind
+;; the successful matches to the current lexical scope.
+
 (defconstant fail nil
   "Pattern matching fails")
 
