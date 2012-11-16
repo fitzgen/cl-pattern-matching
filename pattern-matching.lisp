@@ -50,7 +50,7 @@
 
 (defun match-variable (var input bindings)
   (if-let ((binding (get-binding var bindings)))
-    (if (equal input (binding-val bindings))
+    (if (equal input (binding-val binding))
         bindings
       fail)
     (extend-bindings var input bindings)))
@@ -58,7 +58,7 @@
 (defun pat-match (pattern input &optional (bindings no-bindings))
   (cond ((equal bindings nil) fail)
         ((variable? pattern) (match-variable pattern input bindings))
-        ((eql pattern input) bindings)
+        ((equal pattern input) bindings)
         ((and (consp pattern) (consp input)) (pat-match (rest pattern)
                                                         (rest input)
                                                         (pat-match (first pattern)
@@ -119,3 +119,4 @@
   `(defun ,name (&rest args)
      (cond-match args
        ,@clauses)))
+
